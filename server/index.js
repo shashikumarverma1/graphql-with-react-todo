@@ -23,6 +23,7 @@ const typeDefs = gql`
     quote(quote:String):String
     signup(Firstname:String , lastname:String , email : String , password:String):String
     createTodo(Todo:String):String
+    UpdateTodo(PreTodo:String,UpdatedTodo:String ):String
    }
  
  
@@ -57,6 +58,16 @@ const resolvers = {
             Todos.push(Todo)
             console.log(Todos)
          return 'Todo cretaed'
+        },
+        UpdateTodo:(_,{PreTodo ,UpdatedTodo })=>{
+            for (let i=0 ;  i<Todos.length ; i++){
+                if(Todos[i]==PreTodo){
+                    Todos[i]= UpdatedTodo
+                    break ;
+                }
+            }
+            console.log(PreTodo , UpdatedTodo , Todos)
+         return 'Todo Updated'
         }
     }
 }
