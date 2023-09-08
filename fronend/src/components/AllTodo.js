@@ -43,13 +43,13 @@ const AllTodo = () => {
   const handalupdate=()=>{
     console.log(updateval)
    if(token){
-    // updateToDo({
-    //   variables :{
-    //     id:updateval.id ,
-    //     name:modalinput
-    //   },
-    //   // refetchQueries:[{query : GetAllTodo}]
-    // })
+    updateToDo({
+      variables :{
+        id:updateval.id ,
+        name:modalinput
+      },
+      // refetchQueries:[{query : GetAllTodo}]
+    })
     setshowmodal(false)
    }else{
     alert("Please Login")

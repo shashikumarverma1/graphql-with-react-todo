@@ -24,8 +24,3 @@ mutation signup($Firstname:String ,$lastname : String ,$email:String ,$password:
   signup(Firstname:$Firstname , lastname:$lastname ,email:$email , password:$password)
   }
 `
-export const GetAllTodo=gql`
-query{
-  Todos
-}
-`
