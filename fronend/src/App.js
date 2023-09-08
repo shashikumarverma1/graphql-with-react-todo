@@ -13,7 +13,7 @@ function App() {
   return (
    <div style={{backgroundColor:'green' , height:'100vh'}}>
      <BrowserRouter >
-   <NavBar/>
+   {/* <NavBar/> */}
    <Routes>
    <Route exact path='/CreateTodo' element={<CreateTodo/>}/>
       <Route exact path='/' element={<AllTodo/>}/>

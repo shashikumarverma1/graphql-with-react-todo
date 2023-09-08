@@ -2,24 +2,24 @@ import React ,{useState} from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import {  useMutation } from '@apollo/client';
-import { Loginuser } from './fetch/Mutation';
+// import { Loginuser } from './fetch/Mutation';
 
 export const Login = () => {
   const [email, setemail] = useState("")
   const [password, setpassword] = useState("")
-  const [Loginuser1, res] = useMutation(Loginuser);
+  // const [Loginuser1, res] = useMutation(Loginuser);
   const navigete=useNavigate()
   const SignIn=(e)=>{
     e.preventDefault()
-     console.log(email , password)
+    //  console.log(email , password)
     // localStorage.setItem("token", "token");
-    Loginuser1({
-      variables:{email ,password}
-    })
+    // Loginuser1({
+    //   variables:{email ,password}
+    // })
     setemail("")
     setpassword("")
-    console.log("res" , res.data.Loginuser )
-    localStorage.setItem("token" , res.data.Loginuser)
+    // console.log("res" , res.data.Loginuser )
+    localStorage.setItem("token" , '12345678')
     navigete("/")
   }
   return (

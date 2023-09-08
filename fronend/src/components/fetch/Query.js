@@ -6,3 +6,8 @@ query getAllTodo {
   name
 }}
 `
+export const GetAllTodo=gql`
+query{
+  Todos
+}
+`

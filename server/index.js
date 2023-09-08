@@ -3,10 +3,12 @@ import {ApolloServerPluginLandingPageGraphQLPlayground} from 'apollo-server-core
 const users=[{"id":1,'Firstname':'shashi', 'lastname':'kumar' ,'email':'shashikumarverma@gmail.com' , 'password':'123456' , }]
 const quote1=[]
 const signup=[]
+const Todos=[]
 const typeDefs = gql`
    type Query{
        greet:String
        users:[User]
+       Todos:[String]
    }
    type User{
     id:String
@@ -16,12 +18,16 @@ const typeDefs = gql`
     password:String
   
    } 
+
    type Mutation{
     quote(quote:String):String
     signup(Firstname:String , lastname:String , email : String , password:String):String
+    createTodo(Todo:String):String
    }
  
+ 
 `;
+
 
 const resolvers = {
     Query:{
@@ -30,7 +36,8 @@ const resolvers = {
         },
         users:()=>{
             return users
-        }
+        },
+        Todos:()=>Todos
     },
     Mutation:{
         quote:(_, {quote })=>{
@@ -45,6 +52,11 @@ const resolvers = {
             })
             console.log(signup)
          return 'user cretaed'
+        },
+        createTodo:(_,{Todo})=>{
+            Todos.push(Todo)
+            console.log(Todos)
+         return 'Todo cretaed'
         }
     }
 }

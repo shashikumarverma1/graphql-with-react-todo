@@ -1,25 +1,25 @@
 import React,{useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { createNewTodo} from './fetch/Mutation'
-import { GetAlltodo } from './fetch/Query';
+import { GetAlltodo, GetAllTodo } from './fetch/Query';
 import {  useMutation } from '@apollo/client';
 // import { useRef } from 'react';
 export const CreateTodo = () => {
   const [input, setinput] = useState('')
   const [createTodo, { data, loading, error }] = useMutation(createNewTodo);
-  // console.log("data",data?.createTodo?.name)
-  // console.log(createTodo)
+
   const navigate=useNavigate()
   const createTodo1=(e)=>{
    e.preventDefault()
    console.log(input)
    createTodo({
     variables :{
-      name:input
+      Todo:input
     },
-    refetchQueries:[{query : GetAlltodo}]
+    refetchQueries:[{query : GetAllTodo}]
    })
    navigate('/')
+  // "Todo": "yws"
   }
   if(loading){
     return (
@@ -27,7 +27,7 @@ export const CreateTodo = () => {
     )
   }
   if(error){
-    console.log(error)
+   return <h1>{error}</h1>
   }
   // let ref=useRef()
   return (

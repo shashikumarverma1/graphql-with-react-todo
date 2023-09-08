@@ -1,9 +1,7 @@
 import {  gql } from "@apollo/client";
 export const createNewTodo=gql`
-mutation createNewTodo($name:String!){
-  createTodo(name:$name){
-    name
-  }
+mutation createNewTodo($Todo:String!){
+  createTodo(Todo:$Todo)
 }
 `
 export const deletetodo = gql`
@@ -22,8 +20,12 @@ mutation Loginuser($email:String ,$password:String ){
 }
 `
 export const signup=gql`
-mutation signup($firstName:String ,$lastName : String ,$email:String ,$password:String ){
-  Signupuser(firstName:$firstName , lastName:$lastName ,
-    email:$email , password:$password)
+mutation signup($Firstname:String ,$lastname : String ,$email:String ,$password:String ){
+  signup(Firstname:$Firstname , lastname:$lastname ,email:$email , password:$password)
+  }
+`
+export const GetAllTodo=gql`
+query{
+  Todos
 }
 `
