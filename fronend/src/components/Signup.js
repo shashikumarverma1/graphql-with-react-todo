@@ -12,10 +12,10 @@ const Signup = () => {
   const navigate=useNavigate()
   const SignUp=(e)=>{
     e.preventDefault()
-     console.log({firstName,lastName,email , password})
-    //  Signupuser({
-    //   variables:{firstName,lastName,email , password}
-    //  })
+    //  console.log({firstName,lastName,email , password})
+     Signupuser({
+      variables:{firstName,lastName,email , password}
+     })
      navigate('/login')
   }
   return (

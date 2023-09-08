@@ -5,18 +5,15 @@ import {  useMutation } from '@apollo/client';
 import { deletetodo } from "./fetch/Mutation";
 import { update } from "./fetch/Mutation";
 import { Link } from "react-router-dom";
-import { GetAllUser } from "./fetch/Query";
 const AllTodo = () => {
   const [showmodal, setshowmodal] = useState(false)
   const { loading, error, data } = useQuery(GetAlltodo);
   const [createTodo, res] = useMutation(deletetodo);
   const [updateToDo, res1] = useMutation(update);
   const [modalinput , setmodalinput]=useState("")
-  const { error:err, data:users } = useQuery(GetAllUser);
   const [updateval , setupdateval]=useState(null)
   const [message, setmessage] = useState("")
   let token =localStorage.getItem("token")
-  console.log('users' , users)
   if(loading){
     return (
       <h1 style={{textAlign:"center" , marginTop:"10vh"}}>Loading........</h1>

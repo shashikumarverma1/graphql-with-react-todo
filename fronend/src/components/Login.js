@@ -13,13 +13,13 @@ export const Login = () => {
     e.preventDefault()
      console.log(email , password)
     // localStorage.setItem("token", "token");
-    // Loginuser1({
-    //   variables:{email ,password}
-    // })
+    Loginuser1({
+      variables:{email ,password}
+    })
     setemail("")
     setpassword("")
-    // console.log("res" , res.data.Loginuser )
-    localStorage.setItem("token" , '12345678')
+    console.log("res" , res.data.Loginuser )
+    localStorage.setItem("token" , res.data.Loginuser)
     navigete("/")
   }
   return (

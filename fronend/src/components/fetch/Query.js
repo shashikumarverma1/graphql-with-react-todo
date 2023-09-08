@@ -6,13 +6,3 @@ query getAllTodo {
   name
 }}
 `
-export   const GetAllUser=gql`
-query{
-  users{
-    id
-    Firstname
-    lastname
-  }
-}
-}
-`
