@@ -3,20 +3,20 @@ import { useQuery  } from "@apollo/client";
 import { GetAlltodo , GetAllTodo } from "./fetch/Query";
 import {  useMutation } from '@apollo/client';
 import { deletetodo } from "./fetch/Mutation";
-import { update } from "./fetch/Mutation";
+import { updateTodo } from "./fetch/Mutation";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom'
 const AllTodo = () => {
   const [showmodal, setshowmodal] = useState(false)
   const { loading, error, data } = useQuery(GetAllTodo);
-  const [createTodo, res] = useMutation(deletetodo);
-  const [updateToDo, res1] = useMutation(update);
+  const [DeleteTodo, res] = useMutation(deletetodo);
+  const [updateToDo, res1] = useMutation(updateTodo);
   const [modalinput , setmodalinput]=useState("")
   const [updateval , setupdateval]=useState(null)
   const [message, setmessage] = useState("")
   let token =localStorage.getItem("token")
   const navigate=useNavigate()
-  console.log("wwwwwwwww" , data?.Todos)
+  // console.log("wwwwwwwww" , data?.Todos)
   if(loading){
     return (
       <h1 style={{textAlign:"center" , marginTop:"10vh"}}>Loading........</h1>
@@ -28,12 +28,13 @@ const AllTodo = () => {
   )
  }
   const deletedata=(e)=>{
+    console.log(e)
     if(token){
-      createTodo({
+      DeleteTodo({
         variables :{
-          id:e.id
+          "DeleteTodo": e
         },
-        refetchQueries:[{query : GetAlltodo}]
+        refetchQueries:[{query : GetAllTodo}]
       })
     }else{
       alert("please Login")
@@ -41,14 +42,16 @@ const AllTodo = () => {
 
   }
   const handalupdate=()=>{
-    console.log(updateval)
+    console.log(updateval,modalinput)
    if(token){
     updateToDo({
       variables :{
-        id:updateval.id ,
-        name:modalinput
+        
+          "PreTodo": updateval,
+          "UpdatedTodo": modalinput
+        
       },
-      // refetchQueries:[{query : GetAllTodo}]
+      refetchQueries:[{query : GetAllTodo}]
     })
     setshowmodal(false)
    }else{
@@ -65,7 +68,10 @@ const AllTodo = () => {
          <div className="flex p-2">
          <input type ="text" placeholder="  write" className="mx-2 border rounded "  
          onChange={(e)=>setmodalinput(e.target.value)}/>
-         <button className="border rounded p-1 w-40 bg-blue-600"  onClick={handalupdate}>update</button>
+         <button className="border rounded p-1 w-40 bg-blue-600"  onClick={()=>{
+         
+          handalupdate()
+         }}>update</button>
          </div>
 
           </div> :null

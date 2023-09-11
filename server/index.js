@@ -24,6 +24,7 @@ const typeDefs = gql`
     signup(Firstname:String , lastname:String , email : String , password:String):String
     createTodo(Todo:String):String
     UpdateTodo(PreTodo:String,UpdatedTodo:String ):String
+    DeleteTodo(DeleteTodo:String ):String
    }
  
  
@@ -66,8 +67,20 @@ const resolvers = {
                     break ;
                 }
             }
-            console.log(PreTodo , UpdatedTodo , Todos)
+       
          return 'Todo Updated'
+        },
+        DeleteTodo:(_,{DeleteTodo})=>{
+            let deletedval=''
+            for (let i=0 ;  i<Todos.length ; i++){
+                if(Todos[i]==DeleteTodo){
+                    deletedval=Todos[i]
+                    Todos.splice(i,1)
+                    break ;
+                }
+            }
+          console.log(Todos)
+         return  `${deletedval} Todo Deleted`
         }
     }
 }
