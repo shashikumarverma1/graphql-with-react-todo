@@ -8,18 +8,19 @@ import { CreateTodo } from './components/CreateTodo';
 import { PageNotFound } from './components/PageNotFound';
 import AllTodo from './components/AllTodo';
 import { useState } from 'react';
+import { Career } from './components/Career';
+
 function App() {
-  
   return (
-   <div style={{backgroundColor:'green' , height:'100vh'}}>
+   <div >
      <BrowserRouter >
-   {/* <NavBar/> */}
+   <NavBar/>
    <Routes>
    <Route exact path='/CreateTodo' element={<CreateTodo/>}/>
       <Route exact path='/' element={<AllTodo/>}/>
       <Route exact path='/Login' element={<Login/>}/>
       <Route exact path='/Signup' element={<Signup/>}/>
-   
+      <Route exact path='/Career' element={<Career/>}/>
       <Route exact path='/*' element={<PageNotFound/>}/>
       
    </Routes>

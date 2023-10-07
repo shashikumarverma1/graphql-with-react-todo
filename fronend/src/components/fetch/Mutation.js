@@ -9,9 +9,15 @@ mutation DeleteTodo($DeleteTodo:String){
   DeleteTodo(DeleteTodo:$DeleteTodo)
 }
 `
+<<<<<<< HEAD
 export const updateTodo=gql`
 mutation updatetodo($PreTodo:String , $UpdatedTodo:String){
   UpdateTodo(PreTodo:$PreTodo , UpdatedTodo:$UpdatedTodo)
+=======
+export const UpdateTodo=gql`
+mutation UpdateTodo($PreTodo:String,$UpdatedTodo:String){
+UpdateTodo(PreTodo:$PreTodo,UpdatedTodo:$UpdatedTodo)
+>>>>>>> 01f69313d4b74b681d5923f306e74f1c55008e50
 }
 
 `
@@ -25,3 +31,13 @@ mutation signup($Firstname:String ,$lastname : String ,$email:String ,$password:
   signup(Firstname:$Firstname , lastname:$lastname ,email:$email , password:$password)
   }
 `
+export const FileUpload=gql`
+mutation singleUpload($file:Upload!){
+singleUpload(file:$file)
+}
+`
+export const DeleteTodoval=gql`
+mutation DeleteTodo($TodoValue:String){
+  DeleteTodo(TodoValue:$TodoValue)
+  }
+  `
