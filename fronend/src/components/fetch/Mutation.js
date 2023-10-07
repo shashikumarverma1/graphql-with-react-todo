@@ -5,21 +5,14 @@ mutation createNewTodo($Todo:String!){
 }
 `
 export const deletetodo = gql`
-mutation DeleteTodo($DeleteTodo:String){
-  DeleteTodo(DeleteTodo:$DeleteTodo)
+mutation deletetodo($id:String){
+  deletetodo(id:$id)
 }
 `
-<<<<<<< HEAD
-export const updateTodo=gql`
-mutation updatetodo($PreTodo:String , $UpdatedTodo:String){
-  UpdateTodo(PreTodo:$PreTodo , UpdatedTodo:$UpdatedTodo)
-=======
 export const UpdateTodo=gql`
 mutation UpdateTodo($PreTodo:String,$UpdatedTodo:String){
 UpdateTodo(PreTodo:$PreTodo,UpdatedTodo:$UpdatedTodo)
->>>>>>> 01f69313d4b74b681d5923f306e74f1c55008e50
 }
-
 `
 export const Loginuser=gql`
 mutation Loginuser($email:String ,$password:String ){

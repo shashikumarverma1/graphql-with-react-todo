@@ -2,36 +2,22 @@ import React ,{useState} from "react";
 import { useQuery  } from "@apollo/client";
 import { GetAlltodo , GetAllTodo } from "./fetch/Query";
 import {  useMutation } from '@apollo/client';
-<<<<<<< HEAD
-import { deletetodo } from "./fetch/Mutation";
-import { updateTodo } from "./fetch/Mutation";
-=======
 // import { deletetodo  } from "./fetch/Mutation";
 import { UpdateTodo, DeleteTodoval } from "./fetch/Mutation";
->>>>>>> 01f69313d4b74b681d5923f306e74f1c55008e50
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom'
 const AllTodo = () => {
   const [showmodal, setshowmodal] = useState(false)
   const { loading, error, data } = useQuery(GetAllTodo);
-<<<<<<< HEAD
-  const [DeleteTodo, res] = useMutation(deletetodo);
-  const [updateToDo, res1] = useMutation(updateTodo);
-=======
   // const [createTodo, res] = useMutation(deletetodo);
   const [updateToDo, res] = useMutation(UpdateTodo);
   const [DeleteTodos, res1] = useMutation(DeleteTodoval);
->>>>>>> 01f69313d4b74b681d5923f306e74f1c55008e50
   const [modalinput , setmodalinput]=useState("")
   const [updateval , setupdateval]=useState(null)
   const [message, setmessage] = useState("")
   let token =localStorage.getItem("token")
   const navigate=useNavigate()
-<<<<<<< HEAD
-  // console.log("wwwwwwwww" , data?.Todos)
-=======
 
->>>>>>> 01f69313d4b74b681d5923f306e74f1c55008e50
   if(loading){
     return (
       <h1 style={{textAlign:"center" , marginTop:"10vh"}}>Loading........</h1>
@@ -42,40 +28,14 @@ const AllTodo = () => {
     <h1>wait............</h1>
   )
  }
-<<<<<<< HEAD
-  const deletedata=(e)=>{
-    console.log(e)
-    if(token){
-      DeleteTodo({
-        variables :{
-          "DeleteTodo": e
-        },
-        refetchQueries:[{query : GetAllTodo}]
-      })
-    }else{
-      alert("please Login")
-    }
-=======
->>>>>>> 01f69313d4b74b681d5923f306e74f1c55008e50
 
   const handalupdate=()=>{
-<<<<<<< HEAD
-    console.log(updateval,modalinput)
-   if(token){
-    updateToDo({
-      variables :{
-        
-          "PreTodo": updateval,
-          "UpdatedTodo": modalinput
-        
-=======
     console.log(updateval , modalinput)
    if(token){
     updateToDo({
       variables :{
         "PreTodo": updateval,
         "UpdatedTodo": modalinput
->>>>>>> 01f69313d4b74b681d5923f306e74f1c55008e50
       },
       refetchQueries:[{query : GetAllTodo}]
     })
@@ -110,10 +70,7 @@ const AllTodo = () => {
          <div className="flex p-2">
          <input type ="text" placeholder="  write" className="mx-2 border rounded "  
          onChange={(e)=>setmodalinput(e.target.value)}/>
-         <button className="border rounded p-1 w-40 bg-blue-600"  onClick={()=>{
-         
-          handalupdate()
-         }}>update</button>
+         <button className="border rounded p-1 w-40 bg-blue-600"  onClick={handalupdate}>update</button>
          </div>
 
           </div> :null

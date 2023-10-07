@@ -26,12 +26,8 @@ scalar Upload
     signup(Firstname:String , lastname:String , email : String , password:String):String
     createTodo(Todo:String):String
     UpdateTodo(PreTodo:String,UpdatedTodo:String ):String
-<<<<<<< HEAD
-    DeleteTodo(DeleteTodo:String ):String
-=======
     DeleteTodo(TodoValue:String ):String
     singleUpload(file: Upload!): String
->>>>>>> 01f69313d4b74b681d5923f306e74f1c55008e50
    }
  
  
@@ -74,16 +70,6 @@ const resolvers = {
                     break ;
                 }
             }
-<<<<<<< HEAD
-       
-         return 'Todo Updated'
-        },
-        DeleteTodo:(_,{DeleteTodo})=>{
-            let deletedval=''
-            for (let i=0 ;  i<Todos.length ; i++){
-                if(Todos[i]==DeleteTodo){
-                    deletedval=Todos[i]
-=======
             console.log(PreTodo , UpdatedTodo , Todos)
          return ' Updated succeesfully'
         },
@@ -91,20 +77,15 @@ const resolvers = {
        console.log(TodoValue)
             for (let i=0 ;  i<Todos.length ; i++){
                 if(Todos[i]==TodoValue){
->>>>>>> 01f69313d4b74b681d5923f306e74f1c55008e50
                     Todos.splice(i,1)
                     break ;
                 }
             }
           console.log(Todos)
-<<<<<<< HEAD
-         return  `${deletedval} Todo Deleted`
-=======
          return 'Deleted succeesfully'
         },
         singleUpload:(parent ,{file})=>{
             console.log(file)
->>>>>>> 01f69313d4b74b681d5923f306e74f1c55008e50
         }
       
     }
