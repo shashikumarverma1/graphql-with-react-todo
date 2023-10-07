@@ -9,9 +9,9 @@ mutation deletetodo($id:String){
   deletetodo(id:$id)
 }
 `
-export const update=gql`
-mutation update($id:String , $name:String){
-  updateuser(id:$id , name:$name)
+export const UpdateTodo=gql`
+mutation UpdateTodo($PreTodo:String,$UpdatedTodo:String){
+UpdateTodo(PreTodo:$PreTodo,UpdatedTodo:$UpdatedTodo)
 }
 `
 export const Loginuser=gql`
@@ -24,3 +24,13 @@ mutation signup($Firstname:String ,$lastname : String ,$email:String ,$password:
   signup(Firstname:$Firstname , lastname:$lastname ,email:$email , password:$password)
   }
 `
+export const FileUpload=gql`
+mutation singleUpload($file:Upload!){
+singleUpload(file:$file)
+}
+`
+export const DeleteTodoval=gql`
+mutation DeleteTodo($TodoValue:String){
+  DeleteTodo(TodoValue:$TodoValue)
+  }
+  `

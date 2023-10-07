@@ -1,10 +1,12 @@
-import {ApolloServer,gql} from 'apollo-server'
-import {ApolloServerPluginLandingPageGraphQLPlayground} from 'apollo-server-core'
+import {ApolloServer,gql , } from 'apollo-server'
+import {ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core'
+// import { GraphQLUpload } from 'graphql-upload'
 const users=[{"id":1,'Firstname':'shashi', 'lastname':'kumar' ,'email':'shashikumarverma@gmail.com' , 'password':'123456' , }]
 const quote1=[]
 const signup=[]
 const Todos=[]
 const typeDefs = gql`
+scalar Upload
    type Query{
        greet:String
        users:[User]
@@ -24,6 +26,8 @@ const typeDefs = gql`
     signup(Firstname:String , lastname:String , email : String , password:String):String
     createTodo(Todo:String):String
     UpdateTodo(PreTodo:String,UpdatedTodo:String ):String
+    DeleteTodo(TodoValue:String ):String
+    singleUpload(file: Upload!): String
    }
  
  
@@ -67,8 +71,23 @@ const resolvers = {
                 }
             }
             console.log(PreTodo , UpdatedTodo , Todos)
-         return 'Todo Updated'
+         return ' Updated succeesfully'
+        },
+        DeleteTodo:(_,{TodoValue})=>{
+       console.log(TodoValue)
+            for (let i=0 ;  i<Todos.length ; i++){
+                if(Todos[i]==TodoValue){
+                    Todos.splice(i,1)
+                    break ;
+                }
+            }
+          console.log(Todos)
+         return 'Deleted succeesfully'
+        },
+        singleUpload:(parent ,{file})=>{
+            console.log(file)
         }
+      
     }
 }
 

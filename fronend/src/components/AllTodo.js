@@ -2,21 +2,22 @@ import React ,{useState} from "react";
 import { useQuery  } from "@apollo/client";
 import { GetAlltodo , GetAllTodo } from "./fetch/Query";
 import {  useMutation } from '@apollo/client';
-import { deletetodo } from "./fetch/Mutation";
-import { update } from "./fetch/Mutation";
+// import { deletetodo  } from "./fetch/Mutation";
+import { UpdateTodo, DeleteTodoval } from "./fetch/Mutation";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom'
 const AllTodo = () => {
   const [showmodal, setshowmodal] = useState(false)
   const { loading, error, data } = useQuery(GetAllTodo);
-  const [createTodo, res] = useMutation(deletetodo);
-  const [updateToDo, res1] = useMutation(update);
+  // const [createTodo, res] = useMutation(deletetodo);
+  const [updateToDo, res] = useMutation(UpdateTodo);
+  const [DeleteTodos, res1] = useMutation(DeleteTodoval);
   const [modalinput , setmodalinput]=useState("")
   const [updateval , setupdateval]=useState(null)
   const [message, setmessage] = useState("")
   let token =localStorage.getItem("token")
   const navigate=useNavigate()
-  console.log("wwwwwwwww" , data?.Todos)
+
   if(loading){
     return (
       <h1 style={{textAlign:"center" , marginTop:"10vh"}}>Loading........</h1>
@@ -27,30 +28,34 @@ const AllTodo = () => {
     <h1>wait............</h1>
   )
  }
-  const deletedata=(e)=>{
-    if(token){
-      createTodo({
-        variables :{
-          id:e.id
-        },
-        refetchQueries:[{query : GetAlltodo}]
-      })
-    }else{
-      alert("please Login")
-    }
 
-  }
   const handalupdate=()=>{
-    console.log(updateval)
+    console.log(updateval , modalinput)
    if(token){
     updateToDo({
       variables :{
-        id:updateval.id ,
-        name:modalinput
+        "PreTodo": updateval,
+        "UpdatedTodo": modalinput
       },
-      // refetchQueries:[{query : GetAllTodo}]
+      refetchQueries:[{query : GetAllTodo}]
     })
     setshowmodal(false)
+  //  alert( res1?.data?.UpdateTodo )
+   }else{
+    alert("Please Login")
+   }
+  }
+  const DeleteTodo=(e)=>{
+    console.log(e)
+    
+   if(token){
+    DeleteTodos({
+      variables :{
+        "TodoValue": e
+      },
+      refetchQueries:[{query : GetAllTodo}]
+    })
+  
    }else{
     alert("Please Login")
    }
@@ -89,9 +94,11 @@ const AllTodo = () => {
                     }}>
                     update
                   </button>
-                  <Link to="/" className="mx-5 p-2 bg-red-500 m-2 rounded text-white w-24" onClick={()=>deletedata(e)}>
-                    Delete
-                  </Link>
+               
+                  <button className="mx-5 p-2 bg-red-500 m-2 rounded text-white w-24" onClick={()=>DeleteTodo(e)}>
+                    
+                     Delete
+                  </button>
                 </div>
               </div>
             </div>
